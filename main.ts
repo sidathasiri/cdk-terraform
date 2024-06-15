@@ -116,7 +116,7 @@ class MyStack extends TerraformStack {
       restApiId: restApi.id,
       resourceId: helloResource.id,
       httpMethod: getAPI.httpMethod,
-      integrationHttpMethod: 'GET',
+      integrationHttpMethod: 'POST',
       type: 'AWS_PROXY',
       uri: lambdaFunction.invokeArn,
     });
@@ -128,6 +128,7 @@ class MyStack extends TerraformStack {
       functionName: lambdaFunction.functionName,
       principal: 'apigateway.amazonaws.com',
       sourceArn: `${restApi.executionArn}/*/*`,
+      dependsOn: [restApi],
     });
 
     const apiDeployment = new ApiGatewayDeployment(this, 'deployment', {
