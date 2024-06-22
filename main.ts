@@ -22,9 +22,10 @@ class MyStack extends TerraformStack {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
+    // Configuring the AWS provider
     new aws.provider.AwsProvider(this, 'aws', {
       region: 'us-east-1',
-      allowedAccountIds: ['826406658508'],
+      allowedAccountIds: ['123456789'],
     });
 
     // S3 Backend - https://www.terraform.io/docs/backends/types/s3.html
